@@ -52,3 +52,14 @@ def bubble_sort(valores):
 """testa o metodo com alguns valores."""
 c = [5, 4, 3, 2, 1, 3]
 print(bubble_sort(c))  
+
+def merge_sort(valores):
+    """Ordena uma lista em ordem crescente usando o método de ordenação por fusão."""
+    if len(valores) <= 1:
+        return valores
+
+    meio = len(valores) // 2
+    esquerda = merge_sort(valores[:meio])
+    direita = merge_sort(valores[meio:])
+
+    return merge(esquerda, direita)
