@@ -63,3 +63,26 @@ def merge_sort(valores):
     direita = merge_sort(valores[meio:])
 
     return merge(esquerda, direita)
+
+def merge(esquerda, direita):
+    """Funde duas listas ordenadas em uma única lista ordenada."""
+    resultado = []
+    i = j = 0
+
+    while i < len(esquerda) and j < len(direita):
+        if esquerda[i] < direita[j]:
+            resultado.append(esquerda[i])
+            i += 1
+        else:
+            resultado.append(direita[j])
+            j += 1
+
+    resultado.extend(esquerda[i:])
+    resultado.extend(direita[j:])
+
+    return resultado
+
+"""testa o metodo com alguns valores."""
+d = [5, 4, 3, 2, 1, 3]
+print(merge_sort(d))
+
