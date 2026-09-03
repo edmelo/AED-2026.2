@@ -36,3 +36,19 @@ def insertion_sort(valores):
 """testa o metodo com alguns valores."""
 b = [5, 4, 3, 2, 1, 3]
 print(insertion_sort(b))
+
+def bubble_sort(valores):
+    """Ordena uma lista em ordem crescente usando o método da bolha."""
+    lista = valores.copy()
+    n = len(lista)
+
+    for i in range(n):
+        for j in range(0, n - i - 1):
+            if lista[j] > lista[j + 1]:
+                lista[j], lista[j + 1] = lista[j + 1], lista[j]
+
+    return lista
+
+"""testa o metodo com alguns valores."""
+c = [5, 4, 3, 2, 1, 3]
+print(bubble_sort(c))  
