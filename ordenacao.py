@@ -86,3 +86,5 @@ def merge(esquerda, direita):
 d = [5, 4, 3, 2, 1, 3]
 print(merge_sort(d))
 
+def quick_sort()
+
