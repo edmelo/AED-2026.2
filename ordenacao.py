@@ -86,5 +86,19 @@ def merge(esquerda, direita):
 d = [5, 4, 3, 2, 1, 3]
 print(merge_sort(d))
 
-def quick_sort()
+def quick_sort(valores):
+    """Ordena uma lista em ordem crescente usando o método quick sort."""
+    if len(valores) <= 1:
+        return valores.copy()
+
+    pivo = valores[len(valores) // 2]
+    menores = [valor for valor in valores if valor < pivo]
+    iguais = [valor for valor in valores if valor == pivo]
+    maiores = [valor for valor in valores if valor > pivo]
+
+    return quick_sort(menores) + iguais + quick_sort(maiores)
+
+"""testa o metodo com alguns valores."""
+e = [5, 4, 3, 2, 1, 3]
+print(quick_sort(e))
 
