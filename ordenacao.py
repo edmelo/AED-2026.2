@@ -13,10 +13,6 @@ def selection_sort(valores):
 
 	return lista
 
-"""testa o metodo com alguns valores."""
-a = [5, 4, 3, 2, 1, 3]
-print(selection_sort(a))
-
 def insertion_sort(valores):
     """Ordena uma lista em ordem crescente usando inserção direta."""
     lista = valores.copy()
@@ -33,10 +29,6 @@ def insertion_sort(valores):
 
     return lista
 
-"""testa o metodo com alguns valores."""
-b = [5, 4, 3, 2, 1, 3]
-print(insertion_sort(b))
-
 def bubble_sort(valores):
     """Ordena uma lista em ordem crescente usando o método da bolha."""
     lista = valores.copy()
@@ -48,10 +40,6 @@ def bubble_sort(valores):
                 lista[j], lista[j + 1] = lista[j + 1], lista[j]
 
     return lista
-
-"""testa o metodo com alguns valores."""
-c = [5, 4, 3, 2, 1, 3]
-print(bubble_sort(c))  
 
 def merge_sort(valores):
     """Ordena uma lista em ordem crescente usando o método de ordenação por fusão."""
@@ -82,10 +70,6 @@ def merge(esquerda, direita):
 
     return resultado
 
-"""testa o metodo com alguns valores."""
-d = [5, 4, 3, 2, 1, 3]
-print(merge_sort(d))
-
 def quick_sort(valores):
     """Ordena uma lista em ordem crescente usando o método quick sort."""
     if len(valores) <= 1:
@@ -98,7 +82,10 @@ def quick_sort(valores):
 
     return quick_sort(menores) + iguais + quick_sort(maiores)
 
-"""testa o metodo com alguns valores."""
-e = [5, 4, 3, 2, 1, 3]
-print(quick_sort(e))
-
+if __name__ == "__main__":
+    exemplo = [5, 4, 3, 2, 1, 3]
+    print("selection:", selection_sort(exemplo))
+    print("insertion:", insertion_sort(exemplo))
+    print("bubble:", bubble_sort(exemplo))
+    print("merge:", merge_sort(exemplo))
+    print("quick:", quick_sort(exemplo))
