@@ -1,104 +1,124 @@
-def selection_sort(valores):
-	"""Ordena uma lista em ordem crescente usando seleção direta."""
-	lista = valores.copy()
+class AlgOrdem:
+    def selection(self, valores):
+        """Ordena uma lista em ordem crescente usando seleção direta."""
+        lista = valores.copy()
 
-	for i in range(len(lista) - 1):
-		menor = i
-		for j in range(i + 1, len(lista)):
-			if lista[j] < lista[menor]:
-				menor = j
+        for i in range(len(lista) - 1):
+            menor = i
+            for j in range(i + 1, len(lista)):
+                if lista[j] < lista[menor]:
+                    menor = j
 
-		if menor != i:
-			lista[i], lista[menor] = lista[menor], lista[i]
+            if menor != i:
+                lista[i], lista[menor] = lista[menor], lista[i]
 
-	return lista
+        return lista
 
-"""testa o metodo com alguns valores."""
-a = [5, 4, 3, 2, 1, 3]
-print(selection_sort(a))
+    def insertion(self, valores):
+        """Ordena uma lista em ordem crescente usando inserção direta."""
+        lista = valores.copy()
 
-def insertion_sort(valores):
-    """Ordena uma lista em ordem crescente usando inserção direta."""
-    lista = valores.copy()
+        for i in range(1, len(lista)):
+            chave = lista[i]
+            j = i - 1
 
-    for i in range(1, len(lista)):
-        chave = lista[i]
-        j = i - 1
+            while j >= 0 and lista[j] > chave:
+                lista[j + 1] = lista[j]
+                j -= 1
 
-        while j >= 0 and lista[j] > chave:
-            lista[j + 1] = lista[j]
-            j -= 1
+            lista[j + 1] = chave
 
-        lista[j + 1] = chave
+        return lista
 
-    return lista
+    def bubble(self, valores):
+        """Ordena uma lista em ordem crescente usando o método da bolha."""
+        lista = valores.copy()
+        n = len(lista)
 
-"""testa o metodo com alguns valores."""
-b = [5, 4, 3, 2, 1, 3]
-print(insertion_sort(b))
+        for i in range(n):
+            for j in range(0, n - i - 1):
+                if lista[j] > lista[j + 1]:
+                    lista[j], lista[j + 1] = lista[j + 1], lista[j]
 
-def bubble_sort(valores):
-    """Ordena uma lista em ordem crescente usando o método da bolha."""
-    lista = valores.copy()
-    n = len(lista)
+        return lista
 
-    for i in range(n):
-        for j in range(0, n - i - 1):
-            if lista[j] > lista[j + 1]:
-                lista[j], lista[j + 1] = lista[j + 1], lista[j]
+    def merge(self, valores):
+        """Ordena uma lista em ordem crescente usando o método de fusão."""
+        if len(valores) <= 1:
+            return valores.copy()
 
-    return lista
+        meio = len(valores) // 2
+        esquerda = self.merge_sort(valores[:meio])
+        direita = self.merge_sort(valores[meio:])
 
-"""testa o metodo com alguns valores."""
-c = [5, 4, 3, 2, 1, 3]
-print(bubble_sort(c))  
+        return self.merge(esquerda, direita)
 
-def merge_sort(valores):
-    """Ordena uma lista em ordem crescente usando o método de ordenação por fusão."""
-    if len(valores) <= 1:
-        return valores
+    def merge(self, esquerda, direita):
+        """Funde duas listas ordenadas em uma única lista ordenada."""
+        resultado = []
+        i = j = 0
 
-    meio = len(valores) // 2
-    esquerda = merge_sort(valores[:meio])
-    direita = merge_sort(valores[meio:])
+        while i < len(esquerda) and j < len(direita):
+            if esquerda[i] < direita[j]:
+                resultado.append(esquerda[i])
+                i += 1
+            else:
+                resultado.append(direita[j])
+                j += 1
 
-    return merge(esquerda, direita)
+        resultado.extend(esquerda[i:])
+        resultado.extend(direita[j:])
 
-def merge(esquerda, direita):
-    """Funde duas listas ordenadas em uma única lista ordenada."""
-    resultado = []
-    i = j = 0
+        return resultado
 
-    while i < len(esquerda) and j < len(direita):
-        if esquerda[i] < direita[j]:
-            resultado.append(esquerda[i])
-            i += 1
-        else:
-            resultado.append(direita[j])
-            j += 1
+    def quick(self, valores):
+        """Ordena uma lista em ordem crescente usando o método quick sort."""
+        if len(valores) <= 1:
+            return valores.copy()
 
-    resultado.extend(esquerda[i:])
-    resultado.extend(direita[j:])
+        pivo = valores[len(valores) // 2]
+        menores = [valor for valor in valores if valor < pivo]
+        iguais = [valor for valor in valores if valor == pivo]
+        maiores = [valor for valor in valores if valor > pivo]
 
-    return resultado
+        return self.quick(menores) + iguais + self.quick(maiores)
 
-"""testa o metodo com alguns valores."""
-d = [5, 4, 3, 2, 1, 3]
-print(merge_sort(d))
+    def  heap(self, valores):
+        """Ordena uma lista em ordem crescente usando o método heap sort."""
+        def heapify(lista, n, i):
+            maior = i
+            esquerda = 2 * i + 1
+            direita = 2 * i + 2
 
-def quick_sort(valores):
-    """Ordena uma lista em ordem crescente usando o método quick sort."""
-    if len(valores) <= 1:
-        return valores.copy()
+            if esquerda < n and lista[esquerda] > lista[maior]:
+                maior = esquerda
 
-    pivo = valores[len(valores) // 2]
-    menores = [valor for valor in valores if valor < pivo]
-    iguais = [valor for valor in valores if valor == pivo]
-    maiores = [valor for valor in valores if valor > pivo]
+            if direita < n and lista[direita] > lista[maior]:
+                maior = direita
 
-    return quick_sort(menores) + iguais + quick_sort(maiores)
+            if maior != i:
+                lista[i], lista[maior] = lista[maior], lista[i]
+                heapify(lista, n, maior)
 
-"""testa o metodo com alguns valores."""
-e = [5, 4, 3, 2, 1, 3]
-print(quick_sort(e))
+        lista = valores.copy()
+        n = len(lista)
+
+        for i in range(n // 2 - 1, -1, -1):
+            heapify(lista, n, i)
+
+        for i in range(n - 1, 0, -1):
+            lista[i], lista[0] = lista[0], lista[i]
+            heapify(lista, i, 0)
+
+        return lista
+
+
+if __name__ == "__main__":
+    algoritmos = AlgOrdem()
+    valores = [5, 4, 3, 2, 1, 3]
+    print(algoritmos.selection_sort(valores))
+    print(algoritmos.insertion_sort(valores))
+    print(algoritmos.bubble_sort(valores))
+    print(algoritmos.merge_sort(valores))
+    print(algoritmos.quick_sort(valores))
 
