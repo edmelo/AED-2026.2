@@ -1,6 +1,8 @@
+import random
+
+
 class AlgOrdem:
     def selection(self, valores):
-        """Ordena uma lista em ordem crescente usando seleção direta."""
         lista = valores.copy()
 
         for i in range(len(lista) - 1):
@@ -15,7 +17,6 @@ class AlgOrdem:
         return lista
 
     def insertion(self, valores):
-        """Ordena uma lista em ordem crescente usando inserção direta."""
         lista = valores.copy()
 
         for i in range(1, len(lista)):
@@ -31,7 +32,6 @@ class AlgOrdem:
         return lista
 
     def bubble(self, valores):
-        """Ordena uma lista em ordem crescente usando o método da bolha."""
         lista = valores.copy()
         n = len(lista)
 
@@ -43,7 +43,6 @@ class AlgOrdem:
         return lista
 
     def merge(self, valores):
-        """Ordena uma lista em ordem crescente usando o método de fusão."""
         if len(valores) <= 1:
             return valores.copy()
 
@@ -54,7 +53,6 @@ class AlgOrdem:
         return self._merge(esquerda, direita)
 
     def _merge(self, esquerda, direita):
-        """Funde duas listas ordenadas em uma única lista ordenada."""
         resultado = []
         i = j = 0
 
@@ -72,7 +70,6 @@ class AlgOrdem:
         return resultado
 
     def quick(self, valores):
-        """Ordena uma lista em ordem crescente usando o método quick sort."""
         if len(valores) <= 1:
             return valores.copy()
 
@@ -84,7 +81,6 @@ class AlgOrdem:
         return self.quick(menores) + iguais + self.quick(maiores)
 
     def  heap(self, valores):
-        """Ordena uma lista em ordem crescente usando o método heap sort."""
         def heapify(lista, n, i):
             maior = i
             esquerda = 2 * i + 1
@@ -115,7 +111,7 @@ class AlgOrdem:
 
 if __name__ == "__main__":
     algoritmos = AlgOrdem()
-    valores = [5, 4, 3, 2, 1, 3]
+    valores = [random.randint(1, 100) for _ in range(20)]
     print(algoritmos.selection(valores))
     print(algoritmos.insertion(valores))
     print(algoritmos.bubble(valores))
