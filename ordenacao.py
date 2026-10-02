@@ -48,12 +48,12 @@ class AlgOrdem:
             return valores.copy()
 
         meio = len(valores) // 2
-        esquerda = self.merge_sort(valores[:meio])
-        direita = self.merge_sort(valores[meio:])
+        esquerda = self.merge(valores[:meio])
+        direita = self.merge(valores[meio:])
 
-        return self.merge(esquerda, direita)
+        return self._merge(esquerda, direita)
 
-    def merge(self, esquerda, direita):
+    def _merge(self, esquerda, direita):
         """Funde duas listas ordenadas em uma única lista ordenada."""
         resultado = []
         i = j = 0
@@ -116,9 +116,9 @@ class AlgOrdem:
 if __name__ == "__main__":
     algoritmos = AlgOrdem()
     valores = [5, 4, 3, 2, 1, 3]
-    print(algoritmos.selection_sort(valores))
-    print(algoritmos.insertion_sort(valores))
-    print(algoritmos.bubble_sort(valores))
-    print(algoritmos.merge_sort(valores))
-    print(algoritmos.quick_sort(valores))
-
+    print(algoritmos.selection(valores))
+    print(algoritmos.insertion(valores))
+    print(algoritmos.bubble(valores))
+    print(algoritmos.merge(valores))
+    print(algoritmos.quick(valores))
+    print(algoritmos.heap(valores))
